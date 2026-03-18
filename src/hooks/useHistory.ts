@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 
 type HistoryEntry = {
   id: string;
@@ -15,18 +15,24 @@ export const useHistory = () => {
     return storedHistories ? JSON.parse(storedHistories) : [];
   });
 
-  const addHistory = (totalQuestions: number, totalCorrect: number) => {
-    const newEntry = {
-      id: crypto.randomUUID(),
-      date: new Date().toLocaleString(),
-      totalQuestions,
-      totalCorrect,
-      percentage: Math.round((totalCorrect / totalQuestions) * 100),
-    };
-    const updated = [...histories, newEntry];
-    localStorage.setItem("histories", JSON.stringify(updated));
-    setHistories(updated);
-  };
+  const addHistory = useCallback(
+    (totalQuestions: number, totalCorrect: number) => {
+      const newEntry = {
+        id: crypto.randomUUID(),
+        date: new Date().toLocaleString(),
+        totalQuestions,
+        totalCorrect,
+        percentage: Math.round((totalCorrect / totalQuestions) * 100),
+      };
+
+      setHistories((prev) => {
+        const updated = [...prev, newEntry];
+        localStorage.setItem("histories", JSON.stringify(updated));
+        return updated;
+      });
+    },
+    [],
+  );
 
   return {
     histories,
