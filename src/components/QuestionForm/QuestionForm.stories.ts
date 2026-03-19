@@ -5,6 +5,12 @@ const meta = {
   title: "Components/QuestionForm",
   component: QuestionForm,
   tags: ["autodocs"],
+  args: {
+    isOpen: true,
+    onOpenChange: (isOpen) => {
+      console.log("onOpenChange:", isOpen);
+    },
+  },
 } satisfies Meta<typeof QuestionForm>;
 
 export default meta;
