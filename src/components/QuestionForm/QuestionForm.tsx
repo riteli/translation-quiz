@@ -10,7 +10,6 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog";
 import { Field, FieldGroup } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
@@ -23,11 +22,15 @@ type Question = {
 };
 
 type QuestionFormProps = {
+  isOpen: boolean;
+  onOpenChange: (isOpen: boolean) => void;
   defaultValues?: Question;
   onSubmit: (data: Omit<Question, "id">) => void;
 };
 
 export const QuestionForm = ({
+  isOpen,
+  onOpenChange,
   defaultValues,
   onSubmit,
 }: QuestionFormProps) => {
@@ -40,12 +43,7 @@ export const QuestionForm = ({
   const isUpdating = defaultValues !== undefined;
 
   return (
-    <Dialog>
-      {/* TODO: openは外部から制御するように変更 */}
-      <DialogTrigger asChild>
-        <Button>{isUpdating ? "問題を更新" : "問題を追加"}</Button>
-      </DialogTrigger>
-
+    <Dialog open={isOpen} onOpenChange={onOpenChange}>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>{isUpdating ? "問題を更新" : "問題を追加"}</DialogTitle>
