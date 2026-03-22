@@ -9,7 +9,6 @@ const meta = {
     onClick: () => {
       console.log("Button clicked");
     },
-    isSelected: false,
   },
 } satisfies Meta<typeof SelfJudgeButton>;
 
@@ -25,19 +24,5 @@ export const Correct: Story = {
 export const Incorrect: Story = {
   args: {
     text: "不正解",
-  },
-};
-
-export const SelectedCorrect: Story = {
-  args: {
-    text: "正解",
-    isSelected: true,
-  },
-};
-
-export const SelectedIncorrect: Story = {
-  args: {
-    text: "不正解",
-    isSelected: true,
   },
 };

@@ -28,19 +28,19 @@ export const HistoryList = ({ histories }: HistoryListProps) => {
     <Table>
       <TableHeader>
         <TableRow>
-          <TableHead>日付</TableHead>
-          <TableHead>正解数</TableHead>
-          <TableHead>正解率</TableHead>
+          <TableHead className="text-center">日付</TableHead>
+          <TableHead className="text-center">正解数</TableHead>
+          <TableHead className="text-center">正解率</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
         {histories.map((item) => (
           <TableRow key={item.id}>
-            <TableCell>{item.date}</TableCell>
-            <TableCell>
+            <TableCell className="text-center">{item.date}</TableCell>
+            <TableCell className="text-center">
               {item.totalCorrect}/{item.totalQuestions}
             </TableCell>
-            <TableCell>{item.percentage}%</TableCell>
+            <TableCell className="text-center">{item.percentage}%</TableCell>
           </TableRow>
         ))}
       </TableBody>

@@ -33,20 +33,25 @@ export const QuestionList = ({
     <Table>
       <TableHeader>
         <TableRow>
-          <TableHead>問題</TableHead>
-          <TableHead>カテゴリ</TableHead>
+          <TableHead className="text-center">問題</TableHead>
+          <TableHead className="text-center">カテゴリ</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
         {questions.map((question) => (
           <TableRow key={question.id}>
             <TableCell>{question.question}</TableCell>
-            <TableCell>{question.category}</TableCell>
-            <TableCell>
+            <TableCell className="text-center">{question.category}</TableCell>
+            <TableCell className="text-center">
               <Button onClick={() => onEdit(question)}>編集</Button>
             </TableCell>
-            <TableCell>
-              <Button onClick={() => onDelete(question.id)}>削除</Button>
+            <TableCell className="text-center">
+              <Button
+                className="bg-destructive"
+                onClick={() => onDelete(question.id)}
+              >
+                削除
+              </Button>
             </TableCell>
           </TableRow>
         ))}

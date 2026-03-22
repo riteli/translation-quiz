@@ -29,17 +29,17 @@ export const WithData: Story = {
     questions: [
       {
         id: "1",
-        question: "りんごを英語で言うと?",
+        question: "りんご",
         category: "単語",
       },
       {
         id: "2",
-        question: "犬を英語で言うと?",
+        question: "犬",
         category: "単語",
       },
       {
         id: "3",
-        question: "今日はいい天気ですねを英語で言うと?",
+        question: "今日はいい天気ですね",
         category: "文章",
       },
     ],
