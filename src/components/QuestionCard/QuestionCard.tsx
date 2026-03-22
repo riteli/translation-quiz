@@ -1,4 +1,10 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 type QuestionCardProps = {
   questionNumber: number;
@@ -13,6 +19,7 @@ export const QuestionCard = ({
     <Card>
       <CardHeader>
         <CardTitle>Q{questionNumber}</CardTitle>
+        <CardDescription>下記の文章を英訳してください</CardDescription>
       </CardHeader>
       <CardContent>
         <p>{questionText}</p>

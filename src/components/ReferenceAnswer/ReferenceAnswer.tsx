@@ -1,4 +1,10 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 type ReferenceAnswerProps = {
   referenceAnswer: string;
@@ -17,9 +23,10 @@ export const ReferenceAnswer = ({
     <Card>
       <CardHeader>
         <CardTitle>回答例</CardTitle>
+        <CardDescription>DeepLによる翻訳結果です</CardDescription>
       </CardHeader>
       <CardContent>
-        <p>{referenceAnswer}</p>
+        <p className="text-lg">{referenceAnswer}</p>
       </CardContent>
     </Card>
   );

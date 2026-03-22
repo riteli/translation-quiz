@@ -80,9 +80,9 @@ export const QuestionForm = ({
 
           <DialogFooter>
             <DialogClose asChild>
-              <Button>キャンセル</Button>
+              <Button variant="outline">キャンセル</Button>
             </DialogClose>
-            <Button type="submit">{isUpdating ? "更新" : "新規作成"}</Button>　
+            <Button type="submit">{isUpdating ? "更新" : "新規作成"}</Button>
           </DialogFooter>
         </form>
       </DialogContent>

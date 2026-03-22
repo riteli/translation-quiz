@@ -45,6 +45,8 @@
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
+  --color-correct: oklch(0.527 0.154 150.069);
+  --color-incorrect: oklch(0.577 0.245 27.325);
 }
 
 :root {

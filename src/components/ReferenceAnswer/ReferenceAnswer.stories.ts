@@ -6,7 +6,7 @@ const meta = {
   component: ReferenceAnswer,
   tags: ["autodocs"],
   args: {
-    referenceAnswer: "これは回答例です。",
+    referenceAnswer: "This is an example answer",
     hidden: false,
   },
 } satisfies Meta<typeof ReferenceAnswer>;
