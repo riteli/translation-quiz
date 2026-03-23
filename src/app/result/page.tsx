@@ -23,7 +23,9 @@ export default function Result() {
 
   const { addHistory } = useHistory();
   useEffect(() => {
-    addHistory(totalQuestions, totalCorrect);
+    if (totalQuestions > 0) {
+      addHistory(totalQuestions, totalCorrect);
+    }
   }, [addHistory, totalQuestions, totalCorrect]);
 
   return (
