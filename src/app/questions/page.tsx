@@ -49,20 +49,25 @@ export default function Questions() {
   };
 
   return (
-    <main>
-      <QuestionList
-        questions={questions}
-        onEdit={handleEdit}
-        onDelete={deleteQuestion}
-      />
-      <QuestionForm
-        key={editTarget?.id ?? formKey}
-        isOpen={isFormOpen}
-        onOpenChange={handleOnOpenChange}
-        defaultValues={editTarget}
-        onSubmit={editTarget ? handleUpdate : handleCreate}
-      />
-      <Button onClick={() => setIsFormOpen(true)}>問題を作成</Button>
+    <main className="min-h-screen px-4 py-8">
+      <div className="w-full max-w-2xl mx-auto space-y-6">
+        <div className="flex items-center justify-between">
+          <h1 className="text-2xl font-bold">問題管理</h1>
+          <Button onClick={() => setIsFormOpen(true)}>問題を作成</Button>
+        </div>
+        <QuestionList
+          questions={questions}
+          onEdit={handleEdit}
+          onDelete={deleteQuestion}
+        />
+        <QuestionForm
+          key={editTarget?.id ?? formKey}
+          isOpen={isFormOpen}
+          onOpenChange={handleOnOpenChange}
+          defaultValues={editTarget}
+          onSubmit={editTarget ? handleUpdate : handleCreate}
+        />
+      </div>
     </main>
   );
 }
