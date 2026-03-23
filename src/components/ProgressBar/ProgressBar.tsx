@@ -6,7 +6,7 @@ type ProgressBarProps = {
 
 export const ProgressBar = ({ value }: ProgressBarProps) => {
   return (
-    <div className="w-80">
+    <div className="w-full">
       <Progress value={value} />
     </div>
   );
