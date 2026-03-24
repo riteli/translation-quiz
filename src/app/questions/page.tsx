@@ -53,7 +53,12 @@ export default function Questions() {
       <div className="w-full max-w-2xl mx-auto space-y-6">
         <div className="flex items-center justify-between">
           <h1 className="text-2xl font-bold">問題管理</h1>
-          <Button onClick={() => setIsFormOpen(true)}>問題を作成</Button>
+          <Button
+            className="cursor-pointer"
+            onClick={() => setIsFormOpen(true)}
+          >
+            問題を作成
+          </Button>
         </div>
         <QuestionList
           questions={questions}
