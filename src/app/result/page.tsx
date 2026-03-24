@@ -1,14 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect } from "react";
+import { useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
 import { ScoreBoard } from "@/components/ScoreBoard/ScoreBoard";
 import { useHistory } from "@/hooks/useHistory";
 
-export default function Result() {
+function ResultContent() {
   const searchParams = useSearchParams();
   const totalQuestions = Number(searchParams.get("total"));
   const totalCorrect = Number(searchParams.get("correct"));
@@ -44,5 +44,13 @@ export default function Result() {
         </Button>
       </div>
     </main>
+  );
+}
+
+export default function Result() {
+  return (
+    <Suspense fallback={<div>読み込み中...</div>}>
+      <ResultContent />
+    </Suspense>
   );
 }
