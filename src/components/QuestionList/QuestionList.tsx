@@ -43,11 +43,16 @@ export const QuestionList = ({
             <TableCell>{question.question}</TableCell>
             <TableCell className="text-center">{question.category}</TableCell>
             <TableCell className="text-center">
-              <Button onClick={() => onEdit(question)}>編集</Button>
+              <Button
+                className="cursor-pointer"
+                onClick={() => onEdit(question)}
+              >
+                編集
+              </Button>
             </TableCell>
             <TableCell className="text-center">
               <Button
-                className="bg-destructive"
+                className="bg-destructive cursor-pointer"
                 onClick={() => onDelete(question.id)}
               >
                 削除
