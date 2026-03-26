@@ -15,12 +15,7 @@ import {
 import { Field, FieldGroup } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-
-type Question = {
-  id: string;
-  question: string;
-  category: string;
-};
+import type { Question } from "@/types";
 
 type QuestionFormProps = {
   isOpen: boolean;

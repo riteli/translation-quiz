@@ -7,12 +7,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-
-type Question = {
-  id: string;
-  question: string;
-  category: string;
-};
+import type { Question } from "@/types";
 
 type QuestionListProps = {
   questions: Array<Question>;

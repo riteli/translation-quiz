@@ -1,10 +1,6 @@
 import { useState } from "react";
 
-type Question = {
-  id: string;
-  question: string;
-  category: string;
-};
+import type { Question } from "@/types";
 
 export const useQuestions = () => {
   const [questions, setQuestions] = useState<Array<Question>>(() => {
