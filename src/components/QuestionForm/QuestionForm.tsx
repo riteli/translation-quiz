@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
-
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Controller, useForm } from "react-hook-form";
+import * as z from "zod";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -28,18 +29,31 @@ type QuestionFormProps = {
   onSubmit: (data: Omit<Question, "id">) => void;
 };
 
+const schema = z.object({
+  question: z.string().min(1, "問題文を1文字以上入力してください"),
+  category: z.string(),
+});
+
+type FormValues = z.infer<typeof schema>;
+
 export const QuestionForm = ({
   isOpen,
   onOpenChange,
   defaultValues,
   onSubmit,
 }: QuestionFormProps) => {
-  const [question, setQuestion] = useState<string>(
-    defaultValues?.question || "",
-  );
-  const [category, setCategory] = useState<string>(
-    defaultValues?.category || "",
-  );
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormValues>({
+    resolver: zodResolver(schema),
+    defaultValues: {
+      question: defaultValues?.question || "",
+      category: defaultValues?.category || "",
+    },
+  });
+
   const isUpdating = defaultValues !== undefined;
 
   return (
@@ -48,32 +62,39 @@ export const QuestionForm = ({
         <DialogHeader>
           <DialogTitle>{isUpdating ? "問題を更新" : "問題を追加"}</DialogTitle>
         </DialogHeader>
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            onSubmit({
-              question,
-              category,
-            });
-          }}
-        >
+        <form onSubmit={handleSubmit(onSubmit)}>
           <FieldGroup>
             <Field>
               <Label htmlFor="question">問題</Label>
-              <Input
-                id="question"
-                placeholder="英訳する文章を入力してください"
-                value={question}
-                onChange={(e) => setQuestion(e.target.value)}
+              <Controller
+                name="question"
+                control={control}
+                render={({ field }) => (
+                  <Input
+                    id="question"
+                    placeholder="英訳する文章を入力してください"
+                    {...field}
+                  />
+                )}
               />
+              {errors.question && (
+                <p className="text-destructive text-sm">
+                  {errors.question.message}
+                </p>
+              )}
             </Field>
             <Field>
               <Label htmlFor="category">カテゴリ</Label>
-              <Input
-                id="category"
-                placeholder="カテゴリを入力してください"
-                value={category}
-                onChange={(e) => setCategory(e.target.value)}
+              <Controller
+                name="category"
+                control={control}
+                render={({ field }) => (
+                  <Input
+                    id="category"
+                    placeholder="カテゴリを入力してください"
+                    {...field}
+                  />
+                )}
               />
             </Field>
           </FieldGroup>
