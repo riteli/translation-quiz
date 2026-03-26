@@ -6,12 +6,7 @@ import { Button } from "@/components/ui/button";
 import { QuestionList } from "@/components/QuestionList/QuestionList";
 import { QuestionForm } from "@/components/QuestionForm/QuestionForm";
 import { useQuestions } from "@/hooks/useQuestions";
-
-type Question = {
-  id: string;
-  question: string;
-  category: string;
-};
+import type { Question } from "@/types";
 
 export default function Questions() {
   const [formKey, setFormKey] = useState<number>(0);
