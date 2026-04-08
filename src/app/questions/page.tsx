@@ -12,6 +12,7 @@ export default function Questions() {
   const [formKey, setFormKey] = useState<number>(0);
   const [isFormOpen, setIsFormOpen] = useState<boolean>(false);
   const [editTarget, setEditTarget] = useState<Question | undefined>(undefined);
+  const [sortOrder, setSortOrder] = useState<"asc" | "desc" | "none">("none");
 
   const { questions, createQuestion, updateQuestion, deleteQuestion } =
     useQuestions();
@@ -43,20 +44,54 @@ export default function Questions() {
     }
   };
 
+  const toggleSortOrder = () => {
+    if (sortOrder === "none") {
+      setSortOrder("asc");
+    } else if (sortOrder === "asc") {
+      setSortOrder("desc");
+    } else {
+      setSortOrder("none");
+    }
+  };
+
+  const sortedQuestions = [...questions].sort((a, b) => {
+    if (sortOrder === "asc") {
+      return a.category.localeCompare(b.category, "ja");
+    }
+    if (sortOrder === "desc") {
+      return b.category.localeCompare(a.category, "ja");
+    }
+    return 0;
+  });
+
   return (
     <main className="min-h-screen px-4 py-8">
       <div className="w-full max-w-2xl mx-auto space-y-6">
         <div className="flex items-center justify-between">
           <h1 className="text-2xl font-bold">問題管理</h1>
-          <Button
-            className="cursor-pointer"
-            onClick={() => setIsFormOpen(true)}
-          >
-            問題を作成
-          </Button>
+          <div className="flex flex-col items-center justify-center space-y-2 md:space-y-0 md:flex-row md:items-start md:space-x-2">
+            <Button
+              className="cursor-pointer"
+              onClick={() => setIsFormOpen(true)}
+            >
+              問題を作成
+            </Button>
+            <div>
+              <Button className="cursor-pointer" onClick={toggleSortOrder}>
+                {sortOrder === "asc"
+                  ? "カテゴリ昇順"
+                  : sortOrder === "desc"
+                    ? "カテゴリ降順"
+                    : "カテゴリでソート"}
+              </Button>
+              <p className="text-muted-foreground">
+                <small>実際の問題順は変わりません</small>
+              </p>
+            </div>
+          </div>
         </div>
         <QuestionList
-          questions={questions}
+          questions={sortedQuestions}
           onEdit={handleEdit}
           onDelete={deleteQuestion}
         />
